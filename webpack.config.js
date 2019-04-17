@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
 
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
@@ -10,7 +11,7 @@ module.exports = {
   entry: './djangowebpack/static/assets/js/index.js',
   output: {
       path: path.resolve('./djangowebpack/static/webpack_bundles/'),
-      filename: "[name]-[hash].js"
+      filename: "js/[name]-[hash].js"
   },
    /*resolve: {
         extensions: ['.scss','eot','woff','ttf','svg']
@@ -32,14 +33,8 @@ module.exports = {
       {
         test: [/\.css$/,/\.scss$/],
         use: ['style-loader', 'css-loader','sass-loader'],
-      },
-      {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-        },
-      },
+      },      
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ],
   },
 
